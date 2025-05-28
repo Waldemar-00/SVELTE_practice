@@ -1,41 +1,37 @@
 <script lang="ts">
-	let colors: string[] = $state([])
-	let options = [
-		{ id: 1, color: 'red' },
-		{ id: 2, color: 'blue' },
-		{ id: 3, color: 'green' },
-		{ id: 4, color: 'brown' },
-		{ id: 5, color: 'black' }
-	]
+	import { User } from './userClass.svelte'
+	const user: User = new User(19, 'example@exec.com', 'JOHN')
 </script>
 
-<h1>Group contains next {colors.length === 1 ? 'color' : 'colors'}: {colors}</h1>
-<form>
-	{#each ['red', 'green', 'blue', 'brown'] as color, index (color + index)}
-		<label>
-			<input type="checkbox" value={color} bind:group={colors} />
-			{color}
-		</label>
-	{/each}
-	<hr />
-	<select name="colorOptions" id="color" multiple>
-		{#each options as option, index (option.id + index)}
-			<option value={option}>{option.color.toUpperCase()}</option>
-		{/each}
-	</select>
-</form>
+<h1>Reactivity in Classes</h1>
+
+<h2>User age: {user.age}</h2>
+<h2>User name: {user.name}</h2>
+<h2>User email: {user.email}</h2>
+
+<div class="newUser">
+	<label style="visible: hidden" title="write new age">
+		<input id="age" type="text" bind:value={user.age} />
+	</label>
+	<label style="visible: hidden" title="write new email">
+		<input id="email" type="email" bind:value={user.email} />
+	</label>
+	<label style="visible: hidden" title="write new name">
+		<input id="name" type="text" bind:value={user.name} />
+	</label>
+</div>
 
 <style>
-	form {
-		padding: 1rem 2rem;
+	.newUser {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 1rem;
 	}
-	form select {
-		padding: 0.5rem;
+	.newUser input {
+		padding: 0.5rem 1.5rem 0.5rem 0.5rem;
 	}
-	label {
-		display: block;
-	}
-	input {
-		padding: 0.5rem 1rem 0.5rem 0.5rem;
+	* {
+		margin-left: 1rem;
 	}
 </style>
