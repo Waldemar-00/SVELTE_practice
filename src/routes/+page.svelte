@@ -1,6 +1,9 @@
-<script lang="ts">
+<script>
 	import { User } from './userClass.svelte'
-	const user: User = new User(19, 'example@exec.com', 'JOHN')
+	const user = new User()
+	let ageInput = $state()
+	let emailInput = $state()
+	let nameInput = $state()
 </script>
 
 <h1>Reactivity in Classes</h1>
@@ -11,13 +14,31 @@
 
 <div class="newUser">
 	<label style="visible: hidden" title="write new age">
-		<input id="age" type="text" bind:value={user.age} />
-	</label>
-	<label style="visible: hidden" title="write new email">
-		<input id="email" type="email" bind:value={user.email} />
+		<input
+			id="age"
+			type="text"
+			bind:this={ageInput}
+			onchange={() => (user.age = ageInput.value)}
+			placeholder="age"
+		/>
 	</label>
 	<label style="visible: hidden" title="write new name">
-		<input id="name" type="text" bind:value={user.name} />
+		<input
+			id="name"
+			type="text"
+			onchange={() => (user.name = nameInput.value)}
+			bind:this={nameInput}
+			placeholder="name"
+		/>
+	</label>
+	<label style="visible: hidden" title="write new email">
+		<input
+			id="email"
+			type="email"
+			bind:this={emailInput}
+			onchange={() => (user.email = emailInput.value)}
+			placeholder="email"
+		/>
 	</label>
 </div>
 
