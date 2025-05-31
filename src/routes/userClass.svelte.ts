@@ -7,10 +7,9 @@ export class User {
 		return this.#age
 	}
 	set age(v) {
-		this.#age = v
 		if (String(v).length > 1) {
 			if (Number(v) > 17 && Number(v) < 100) {
-				return
+				this.#age = v
 			} else {
 				this.#age = 'Age start from 18 to 99'
 				setTimeout(() => (this.#age = ''), 2500)
