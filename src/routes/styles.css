@@ -1,0 +1,18 @@
+.buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+button {
+	margin: 0.7rem;
+	padding: 0.7rem 1.2rem;
+	background-color: #fff;
+	border-radius: 0.2rem;
+}
+progress {
+	display: block;
+	margin: 2rem auto;
+	width: 30vw;
+}
