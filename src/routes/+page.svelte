@@ -61,7 +61,7 @@
 		/>
 	</label>
 </div>
-<Snippet>
+<Snippet {numberList}>
 	<h2>Snippets</h2>
 	{#snippet colorList()}
 		<h2>Colors:</h2>
@@ -75,19 +75,19 @@
 			<li>Purple</li>
 		</ul>
 	{/snippet}
-	{#snippet numberList()}
-		<h2>Colors:</h2>
-		<ol>
-			<li>11</li>
-			<li>12</li>
-			<li>13</li>
-			<li>14</li>
-			<li>15</li>
-			<li>16</li>
-			<li>17</li>
-		</ol>
-	{/snippet}
 </Snippet>
+{#snippet numberList()}
+	<h2>Numbers:</h2>
+	<ol>
+		<li>11</li>
+		<li>12</li>
+		<li>13</li>
+		<li>14</li>
+		<li>15</li>
+		<li>16</li>
+		<li>17</li>
+	</ol>
+{/snippet}
 
 <style>
 	.newUser {
