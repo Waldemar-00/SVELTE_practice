@@ -12,7 +12,7 @@
 <label style="visible: hidden" title="progress with tween">
 	<progress max="1" value={tween.current}></progress>
 </label>
-<div class="buttons">
+<div class="flex">
 	<button onclick={() => improve(0.2)}>20%</button>
 	<button onclick={() => improve(0.4)}>40%</button>
 	<button onclick={() => improve(0.6)}>60%</button>

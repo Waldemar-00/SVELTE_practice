@@ -2,11 +2,11 @@
 	let innerText = $state('Write here')
 </script>
 
-<div bind:innerHTML={innerText} contenteditable></div>
+<div class="contenteditable" bind:innerHTML={innerText} contenteditable></div>
 <h1 bind:innerHTML={innerText} contenteditable></h1>
 
 <style>
-	div {
+	.contenteditable {
 		width: 40vw;
 		margin: 2rem auto;
 		padding: 0.7rem;
