@@ -1,11 +1,19 @@
 <script>
+	import { quintOut } from 'svelte/easing'
 	import './styles.css'
+	import { crossfade } from 'svelte/transition'
+	import { flip } from 'svelte/animate'
 	// @ts-ignore
-	let todos = $state([{ todo: 'example', checked: false }])
+	let todos = $state([{ todo: 'example', checked: false, id: crypto.randomUUID() }])
 	let inputNewTodo = $state()
+	let selection = $state('')
+	const onselectionchange = () => {
+		selection = document?.getSelection()?.toString() || ''
+	}
+	// @ts-ignore
 	// @ts-ignore
 	function newTodo(e, value) {
-		todos.push({ todo: value, checked: false })
+		todos.push({ todo: value, checked: false, id: crypto.randomUUID() })
 	}
 	// @ts-ignore
 	function spliceTodos(i) {
@@ -16,8 +24,26 @@
 		e.stopPropagation()
 		inputNewTodo.value = ''
 	}
+	const [send, receive] = crossfade({
+		duration: 1000,
+		// @ts-ignore
+		fallback(node, params) {
+			// const style = getComputedStyle(node)
+			// const transform = style.transform === 'none' ? '' : style.transform
+			return {
+				duration: 1000,
+				easing: quintOut,
+				css: (t) => `
+				transform: scale(${t});
+				opacity: ${t}
+			`
+			}
+		}
+	})
 </script>
 
+<svelte:document {onselectionchange} />
+<h1>Select this text to fire events</h1>
 <div class="flex">
 	<input
 		class="newTodo"
@@ -33,7 +59,12 @@
 <div class="flex">
 	<ul>
 		{#each todos as todo, i (crypto.randomUUID())}
-			<li>
+			<li
+				in:receive={{ key: todo.id }}
+				out:send={{ key: todo.id }}
+				animate:flip={{ duration: 400 }}
+			>
+				<h4>'fucking'</h4>
 				<label style="visible: hidden" title="Is todo done?">
 					<input
 						class="isDone"
@@ -47,6 +78,7 @@
 		{/each}
 	</ul>
 </div>
+<h2>Selection: {selection}</h2>
 
 <style>
 	.inlineBlock {
