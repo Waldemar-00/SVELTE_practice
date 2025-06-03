@@ -1,3 +1,7 @@
+<script module>
+	let variable = 0
+</script>
+
 <script>
 	// @ts-nocheck
 
@@ -17,3 +21,17 @@
 		<button onclick={reset}>RESET</button>
 	{/snippet}
 </svelte:boundary>
+<h2>Variable: {variable}</h2>
+<button
+	onclick={() => {
+		variable += 1
+		console.log(variable)
+	}}>+1</button
+>
+
+<button
+	onclick={() => {
+		variable += 2
+		console.log(variable)
+	}}>+2</button
+>
